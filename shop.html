@@ -142,10 +142,7 @@
         .product-thumb {
             height: 200px;
             background: linear-gradient(135deg, #e8e8e8, #d4d0c8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 72px;
+            display: block;
             cursor: pointer;
             position: relative;
             overflow: hidden;
@@ -243,11 +240,16 @@
         }
         .detail-img-col {
             background: linear-gradient(135deg, #eee, #ddd);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 110px;
+            display: block;
             min-height: 380px;
+            overflow: hidden;
+        }
+        .detail-img-col img {
+            width: 100%;
+            height: 100%;
+            min-height: 380px;
+            object-fit: cover;
+            display: block;
         }
         .detail-info-col { padding: 44px 40px; }
         .detail-tag {
@@ -530,6 +532,146 @@
             .thankyou-box { padding: 40px 24px; }
             .detail-btns { flex-direction: column; }
         }
+
+        /* ── SHOP NAV HOVER DROPDOWN ── */
+        .nav-item.dropdown:hover .dropdown-menu {
+            display: block !important;
+            animation: dropFade 0.18s ease;
+        }
+        @keyframes dropFade {
+            from { opacity: 0; transform: translateY(-6px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        /* Override Bootstrap's click-only behavior for shop item on desktop */
+        @media (min-width: 992px) {
+            .nav-item.dropdown { position: relative; }
+            .nav-item.dropdown .dropdown-menu {
+                margin-top: 0;
+                border-top: 3px solid #b50406;
+                border-radius: 0 0 10px 10px;
+                box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+                min-width: 220px;
+            }
+            .nav-item.dropdown .dropdown-menu .dropdown-item {
+                font-family: "LusailRegular", sans-serif;
+                font-size: 14px;
+                padding: 10px 18px;
+                color: #333;
+                border-bottom: 1px solid #f0f0f0;
+                transition: background 0.15s, padding 0.15s;
+            }
+            .nav-item.dropdown .dropdown-menu .dropdown-item:last-child {
+                border-bottom: none;
+            }
+            .nav-item.dropdown .dropdown-menu .dropdown-item:hover {
+                background: #f8f8f8;
+                color: #b50406;
+                padding-right: 24px;
+            }
+        }
+
+        /* ══════════════════════════════════════
+           MOBILE RESPONSIVE — Full Fix
+        ══════════════════════════════════════ */
+
+        /* ── Hero ── */
+        @media (max-width: 767px) {
+            .shop-hero { padding: 120px 16px 40px; }
+            .shop-hero h1 { font-size: 28px; }
+            .shop-hero p { font-size: 14px; }
+
+            /* ── Category Tabs ── */
+            .shop-cats .container {
+                padding: 0 8px;
+                gap: 0;
+                justify-content: flex-start;
+            }
+            .cat-tab {
+                padding: 14px 14px;
+                font-size: 13px;
+                flex-shrink: 0;
+            }
+
+            /* ── Product Grid ── */
+            .shop-section { padding: 28px 0 40px; }
+            .section-header h2 { font-size: 17px; }
+            .product-thumb { height: 160px; font-size: 54px; }
+            .product-name { font-size: 14px; }
+            .product-desc { font-size: 12px; }
+            .product-price { font-size: 17px; }
+            .btn-add { font-size: 12px; padding: 8px 12px; }
+
+            /* ── Product Detail ── */
+            .detail-hero { padding: 110px 0 20px; }
+            .detail-card { border-radius: 10px; }
+            .detail-img-col {
+                min-height: 180px;
+                font-size: 70px;
+            }
+            .detail-info-col { padding: 20px 16px; }
+            .detail-tag { font-size: 11px; }
+            .detail-name { font-size: 20px; margin-bottom: 8px; }
+            .detail-desc { font-size: 13px; margin-bottom: 16px; }
+            .detail-price { font-size: 26px; margin-bottom: 18px; }
+            .detail-btns { flex-direction: column; gap: 10px; margin-bottom: 20px; }
+            .btn-buy-now, .btn-add-detail { padding: 12px; font-size: 15px; }
+            .detail-meta { gap: 14px; flex-wrap: wrap; }
+            .meta-label { font-size: 10px; }
+            .meta-val { font-size: 12px; }
+
+            /* ── Checkout ── */
+            .checkout-hero { padding: 110px 0 20px; }
+            .checkout-hero h1 { font-size: 24px; }
+            .checkout-box { border-radius: 10px; }
+            .checkout-summary { padding: 20px 16px; }
+            .checkout-summary h4 { font-size: 16px; margin-bottom: 14px; }
+            .order-row { font-size: 13px; }
+            .order-total-row { font-size: 15px; }
+            .checkout-form-wrap { padding: 20px 16px; }
+            .form-control-shop { padding: 10px 12px; font-size: 14px; }
+            .btn-purchase { font-size: 16px; padding: 14px; }
+
+            /* ── Thank You ── */
+            .thankyou-section { padding: 40px 0; }
+            .thankyou-box { padding: 36px 20px; border-radius: 14px; }
+            .ty-icon { font-size: 60px; }
+            .ty-emoji-row { font-size: 20px; letter-spacing: 5px; }
+            .thankyou-box h2 { font-size: 24px; }
+            .thankyou-box .ty-club { font-size: 15px; }
+            .thankyou-box p { font-size: 14px; }
+            .btn-back-shop { font-size: 14px; padding: 12px 28px; }
+
+            /* ── Back link ── */
+            .back-link { font-size: 13px; padding: 6px 12px; margin-bottom: 16px; }
+
+            /* ── Footer shop column spacing ── */
+            .Footer .col-6 { margin-bottom: 10px; }
+        }
+
+        /* ── Tablet (768px - 991px) ── */
+        @media (min-width: 768px) and (max-width: 991px) {
+            .shop-hero h1 { font-size: 36px; }
+            .cat-tab { padding: 14px 18px; font-size: 14px; }
+            .product-thumb { height: 180px; font-size: 64px; }
+            .detail-img-col { min-height: 280px; font-size: 90px; }
+            .detail-info-col { padding: 30px 24px; }
+            .detail-name { font-size: 24px; }
+            .detail-price { font-size: 30px; }
+            .checkout-summary { padding: 24px; }
+            .checkout-form-wrap { padding: 28px 24px; }
+            .thankyou-box { padding: 48px 32px; }
+        }
+
+        /* ── Ensure checkout stacks on mobile ── */
+        @media (max-width: 767px) {
+            .checkout-box .row { flex-direction: column; }
+            .checkout-box .col-md-4,
+            .checkout-box .col-md-8 { width: 100%; }
+            .detail-card .row { flex-direction: column; }
+            .detail-card .col-md-5,
+            .detail-card .col-md-7 { width: 100%; }
+        }
+
     </style>
 </head>
 
@@ -885,34 +1027,34 @@
     // ─── DATA ───
     const products = {
       a: [
-        { id:'a1', name:'قميص النادي الرسمي',   price:180, desc:'القميص الرسمي لنادي لوسيل موسم 2024 بخامة عالية الجودة مع شعار النادي المطرز.', emoji:'👕' },
-        { id:'a2', name:'شورت التدريب',           price:95,  desc:'شورت رياضي خفيف ومريح مثالي للتدريبات اليومية والمباريات.', emoji:'🩳' },
-        { id:'a3', name:'بدلة الحراسة',           price:320, desc:'بدلة حراسة مرمى احترافية متعددة الألوان بتصميم عصري فريد.', emoji:'🧤' },
-        { id:'a4', name:'طقم الأطفال',            price:150, desc:'طقم رسمي للأطفال يشمل القميص والشورت بمقاسات متعددة.', emoji:'👦' },
+        { id:'a1', name:'قميص النادي الرسمي',   price:180, desc:'القميص الرسمي لنادي لوسيل موسم 2024 بخامة عالية الجودة مع شعار النادي المطرز.', img:'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop' },
+        { id:'a2', name:'شورت التدريب',           price:95,  desc:'شورت رياضي خفيف ومريح مثالي للتدريبات اليومية والمباريات.', img:'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=300&fit=crop' },
+        { id:'a3', name:'بدلة الحراسة',           price:320, desc:'بدلة حراسة مرمى احترافية متعددة الألوان بتصميم عصري فريد.', img:'https://images.unsplash.com/photo-1614632537197-38a17061c2bd?w=400&h=300&fit=crop' },
+        { id:'a4', name:'طقم الأطفال',            price:150, desc:'طقم رسمي للأطفال يشمل القميص والشورت بمقاسات متعددة.', img:'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400&h=300&fit=crop' },
       ],
       b: [
-        { id:'b1', name:'قبعة لوسيل الرسمية',    price:75,  desc:'قبعة بيسبول بشعار النادي الذهبي تناسب جميع المناسبات الرياضية.', emoji:'🧢' },
-        { id:'b2', name:'وشاح النادي',            price:55,  desc:'وشاح فليس دافئ بألوان النادي الرسمية لدعم فريقك في كل مباراة.', emoji:'🧣' },
-        { id:'b3', name:'حقيبة ظهر رياضية',      price:195, desc:'حقيبة ظهر بسعة 30 لتر مع حجرات منظمة وشعار النادي المطرز.', emoji:'🎒' },
-        { id:'b4', name:'ساعة يد لوسيل',         price:450, desc:'ساعة رياضية بتصميم حصري تحمل شعار النادي بإطار فضي أنيق.', emoji:'⌚' },
+        { id:'b1', name:'قبعة لوسيل الرسمية',    price:75,  desc:'قبعة بيسبول بشعار النادي الذهبي تناسب جميع المناسبات الرياضية.', img:'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=400&h=300&fit=crop' },
+        { id:'b2', name:'وشاح النادي',            price:55,  desc:'وشاح فليس دافئ بألوان النادي الرسمية لدعم فريقك في كل مباراة.', img:'https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?w=400&h=300&fit=crop' },
+        { id:'b3', name:'حقيبة ظهر رياضية',      price:195, desc:'حقيبة ظهر بسعة 30 لتر مع حجرات منظمة وشعار النادي المطرز.', img:'https://images.unsplash.com/photo-1553062407-98eeb64c6a45?w=400&h=300&fit=crop' },
+        { id:'b4', name:'ساعة يد لوسيل',         price:450, desc:'ساعة رياضية بتصميم حصري تحمل شعار النادي بإطار فضي أنيق.', img:'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=300&fit=crop' },
       ],
       c: [
-        { id:'c1', name:'درع تذكاري',             price:280, desc:'درع ذهبي مصنوع يدوياً يحمل شعار النادي وتاريخ التأسيس — هدية مثالية.', emoji:'🛡️' },
-        { id:'c2', name:'كرة موقّعة',             price:220, desc:'كرة قدم رسمية موقّعة من لاعبي الفريق الأول محفوظة في علبة عرض شفافة.', emoji:'⚽' },
-        { id:'c3', name:'إطار صورة النادي',       price:120, desc:'إطار خشبي فاخر بشعار النادي لعرض ذكرياتك مع نادي لوسيل.', emoji:'🖼️' },
-        { id:'c4', name:'دمية شخصية اللاعب',     price:160, desc:'دمية بتصميم لاعب نادي لوسيل بالزي الرسمي — هدية مميزة للمشجعين.', emoji:'🪆' },
+        { id:'c1', name:'درع تذكاري',             price:280, desc:'درع ذهبي مصنوع يدوياً يحمل شعار النادي وتاريخ التأسيس — هدية مثالية.', img:'https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=400&h=300&fit=crop' },
+        { id:'c2', name:'كرة موقّعة',             price:220, desc:'كرة قدم رسمية موقّعة من لاعبي الفريق الأول محفوظة في علبة عرض شفافة.', img:'https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=400&h=300&fit=crop' },
+        { id:'c3', name:'إطار صورة النادي',       price:120, desc:'إطار خشبي فاخر بشعار النادي لعرض ذكرياتك مع نادي لوسيل.', img:'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=400&h=300&fit=crop' },
+        { id:'c4', name:'دمية شخصية اللاعب',     price:160, desc:'دمية بتصميم لاعب نادي لوسيل بالزي الرسمي — هدية مميزة للمشجعين.', img:'https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=400&h=300&fit=crop' },
       ],
       d: [
-        { id:'d1', name:'كرة تدريب احترافية',    price:130, desc:'كرة قدم احترافية مثالية لجلسات التدريب الفردي والجماعي.', emoji:'⚽' },
-        { id:'d2', name:'مخاريط تدريب',           price:65,  desc:'طقم مخاريط تدريب مكوّن من 12 قطعة بألوان مختلفة لتنظيم التمارين.', emoji:'🔺' },
-        { id:'d3', name:'حذاء ملعب رياضي',       price:380, desc:'حذاء ملعب عالي الأداء بنعل مقوّى مناسب لجميع أنواع الملاعب.', emoji:'👟' },
-        { id:'d4', name:'قفازات حراسة',           price:175, desc:'قفازات حراسة احترافية بطبقة مطاطية غير زلقة لأقصى قدر من الإمساك.', emoji:'🧤' },
+        { id:'d1', name:'كرة تدريب احترافية',    price:130, desc:'كرة قدم احترافية مثالية لجلسات التدريب الفردي والجماعي.', img:'https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=400&h=300&fit=crop' },
+        { id:'d2', name:'مخاريط تدريب',           price:65,  desc:'طقم مخاريط تدريب مكوّن من 12 قطعة بألوان مختلفة لتنظيم التمارين.', img:'https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=400&h=300&fit=crop' },
+        { id:'d3', name:'حذاء ملعب رياضي',       price:380, desc:'حذاء ملعب عالي الأداء بنعل مقوّى مناسب لجميع أنواع الملاعب.', img:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=300&fit=crop' },
+        { id:'d4', name:'قفازات حراسة',           price:175, desc:'قفازات حراسة احترافية بطبقة مطاطية غير زلقة لأقصى قدر من الإمساك.', img:'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop' },
       ],
       e: [
-        { id:'e1', name:'صندوق هدايا VIP',       price:550, desc:'صندوق هدايا فاخر يحتوي على قميص + قبعة + وشاح + ملاحظة شخصية مع غلاف أنيق.', emoji:'🎁' },
-        { id:'e2', name:'مفتاح لوسيل الذهبي',   price:85,  desc:'سلسلة مفاتيح فضية منقوش عليها شعار النادي — هدية صغيرة ذات قيمة كبيرة.', emoji:'🔑' },
-        { id:'e3', name:'كوب حرارة النادي',      price:90,  desc:'كوب ستانلس ستيل بطبعة شعار النادي يحافظ على درجة حرارة مشروبك لساعات.', emoji:'☕' },
-        { id:'e4', name:'لوحة خشبية فنية',       price:210, desc:'لوحة خشبية حرفية تجمع بين شعار النادي وألوانه في تصميم فني حصري.', emoji:'🎨' },
+        { id:'e1', name:'صندوق هدايا VIP',       price:550, desc:'صندوق هدايا فاخر يحتوي على قميص + قبعة + وشاح + ملاحظة شخصية مع غلاف أنيق.', img:'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=400&h=300&fit=crop' },
+        { id:'e2', name:'مفتاح لوسيل الذهبي',   price:85,  desc:'سلسلة مفاتيح فضية منقوش عليها شعار النادي — هدية صغيرة ذات قيمة كبيرة.', img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop' },
+        { id:'e3', name:'كوب حرارة النادي',      price:90,  desc:'كوب ستانلس ستيل بطبعة شعار النادي يحافظ على درجة حرارة مشروبك لساعات.', img:'https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=400&h=300&fit=crop' },
+        { id:'e4', name:'لوحة خشبية فنية',       price:210, desc:'لوحة خشبية حرفية تجمع بين شعار النادي وألوانه في تصميم فني حصري.', img:'https://images.unsplash.com/photo-1582053433976-25c00369fc93?w=400&h=300&fit=crop' },
       ],
     };
 
@@ -937,7 +1079,7 @@
           <div class="col-sm-6 col-lg-3">
             <div class="product-card">
               <div class="product-thumb" onclick="openDetail('${p.id}','${cat}')">
-                ${p.emoji}
+                <img src="${p.img}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display='none';this.parentNode.innerHTML+='🛍️'">
                 <span class="view-hint">عرض التفاصيل</span>
               </div>
               <div class="product-body">
@@ -976,7 +1118,7 @@
       currentCat = cat;
       lastPage = 'shop';
 
-      document.getElementById('detailImg').textContent = p.emoji;
+      document.getElementById('detailImg').innerHTML = `<img src="${p.img}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;" onerror="this.outerHTML='🛍️'">`;
       document.getElementById('detailTag').textContent = catNames[cat];
       document.getElementById('detailName').textContent = p.name;
       document.getElementById('detailDesc').textContent = p.desc;
