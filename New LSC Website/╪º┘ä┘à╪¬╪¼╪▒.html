@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>المتجر | نادي لوسيل الرياضي</title>
+    <meta content="" name="description">
+
+    <!-- Favicons -->
+    <link href="assets/images/logo.png" rel="icon">
+    <link href="assets/images/logo.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link rel="stylesheet" href="assets/fonts/icomoon/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <style>
+        /* ── SHOP PAGE STYLES ── */
+        .shop-hero {
+            background: linear-gradient(135deg, #0a0a1a 0%, #054984 100%);
+            padding: 160px 0 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .shop-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: url("assets/images/hero_bg_1.jpg") center/cover no-repeat;
+            opacity: 0.18;
+        }
+        .shop-hero h1 {
+            font-family: "LusailBold", sans-serif;
+            font-size: 48px;
+            color: #eec60a;
+            position: relative;
+            margin-bottom: 10px;
+        }
+        .shop-hero p {
+            color: #ccc;
+            font-size: 17px;
+            position: relative;
+        }
+        .hero-divider {
+            width: 60px; height: 4px;
+            background: #b50406;
+            margin: 16px auto 0;
+            border-radius: 2px;
+            position: relative;
+        }
+
+        /* ── CATEGORY TABS ── */
+        .shop-cats {
+            background: #fff;
+            border-bottom: 2px solid #f0f0f0;
+            position: sticky;
+            top: 0;
+            z-index: 90;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+        }
+        .shop-cats .container {
+            display: flex;
+            gap: 0;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .shop-cats .container::-webkit-scrollbar { display: none; }
+
+        .cat-tab {
+            padding: 18px 28px;
+            font-family: "LusailBold", sans-serif;
+            font-size: 15px;
+            color: #444;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            white-space: nowrap;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .cat-tab:hover { color: #054984; }
+        .cat-tab.active {
+            color: #b50406;
+            border-bottom-color: #b50406;
+            background: rgba(181,4,6,0.04);
+        }
+
+        /* ── PRODUCTS ── */
+        .shop-section { padding: 50px 0 70px; background: #f8f8f8; }
+        .category-block { display: none; }
+        .category-block.active { display: block; }
+
+        .section-header {
+            margin-bottom: 36px;
+            padding-bottom: 14px;
+            border-bottom: 2px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .section-header h2 {
+            font-family: "LusailBold", sans-serif;
+            font-size: 22px;
+            color: #054984;
+            margin: 0;
+        }
+        .section-header .cat-badge {
+            background: #b50406;
+            color: #fff;
+            font-size: 12px;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-family: "LusailRegular", sans-serif;
+        }
+
+        .product-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+            transition: transform 0.25s, box-shadow 0.25s;
+            height: 100%;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 32px rgba(0,0,0,0.13);
+        }
+        .product-thumb {
+            height: 200px;
+            background: linear-gradient(135deg, #e8e8e8, #d4d0c8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 72px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: opacity 0.2s;
+        }
+        .product-thumb:hover { opacity: 0.88; }
+        .product-thumb .view-hint {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(5,73,132,0.85);
+            color: #fff;
+            font-size: 11px;
+            font-family: "LusailRegular", sans-serif;
+            padding: 4px 12px;
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.2s;
+            white-space: nowrap;
+        }
+        .product-thumb:hover .view-hint { opacity: 1; }
+
+        .product-body { padding: 18px; }
+        .product-name {
+            font-family: "LusailBold", sans-serif;
+            font-size: 16px;
+            color: #222;
+            margin-bottom: 6px;
+        }
+        .product-desc {
+            font-size: 13px;
+            color: #777;
+            line-height: 1.6;
+            margin-bottom: 16px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .product-foot {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .product-price {
+            font-family: "LusailBold", sans-serif;
+            font-size: 20px;
+            color: #054984;
+        }
+        .product-price small {
+            font-size: 13px;
+            color: #999;
+            font-family: "LusailRegular", sans-serif;
+        }
+        .btn-add {
+            background: #b50406;
+            color: #fff;
+            border: none;
+            padding: 9px 16px;
+            border-radius: 8px;
+            font-family: "LusailBold", sans-serif;
+            font-size: 13px;
+            cursor: pointer;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+        .btn-add:hover { background: #054984; }
+
+        /* ── PRODUCT DETAIL ── */
+        #page-detail { display: none; }
+        #page-detail.visible { display: block; }
+
+        .detail-hero {
+            background: linear-gradient(135deg, #0a0a1a 0%, #054984 100%);
+            padding: 140px 0 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .detail-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: url("assets/images/hero_bg_2.jpg") center/cover;
+            opacity: 0.12;
+        }
+
+        .detail-card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.13);
+            overflow: hidden;
+            margin-top: -30px;
+            position: relative;
+        }
+        .detail-img-col {
+            background: linear-gradient(135deg, #eee, #ddd);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 110px;
+            min-height: 380px;
+        }
+        .detail-info-col { padding: 44px 40px; }
+        .detail-tag {
+            display: inline-block;
+            background: rgba(5,73,132,0.1);
+            color: #054984;
+            font-size: 12px;
+            font-family: "LusailBold", sans-serif;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 14px;
+            border: 1px solid rgba(5,73,132,0.2);
+        }
+        .detail-name {
+            font-family: "LusailBold", sans-serif;
+            font-size: 28px;
+            color: #111;
+            margin-bottom: 12px;
+        }
+        .detail-desc {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+        .detail-price {
+            font-family: "LusailBold", sans-serif;
+            font-size: 36px;
+            color: #054984;
+            margin-bottom: 28px;
+        }
+        .detail-price small {
+            font-size: 16px;
+            color: #aaa;
+            font-family: "LusailRegular", sans-serif;
+        }
+        .detail-btns { display: flex; gap: 14px; margin-bottom: 28px; }
+        .btn-buy-now {
+            flex: 1;
+            background: #b50406;
+            color: #fff;
+            border: none;
+            padding: 14px;
+            border-radius: 10px;
+            font-family: "LusailBold", sans-serif;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-buy-now:hover { background: #054984; }
+        .btn-add-detail {
+            flex: 1;
+            background: transparent;
+            color: #054984;
+            border: 2px solid #054984;
+            padding: 14px;
+            border-radius: 10px;
+            font-family: "LusailBold", sans-serif;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-add-detail:hover { background: #054984; color: #fff; }
+        .detail-meta {
+            display: flex;
+            gap: 24px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        .meta-item { display: flex; flex-direction: column; gap: 3px; }
+        .meta-label {
+            font-size: 11px;
+            color: #aaa;
+            font-family: "LusailRegular", sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .meta-val {
+            font-size: 13px;
+            color: #333;
+            font-family: "LusailBold", sans-serif;
+        }
+
+        /* ── CHECKOUT ── */
+        #page-checkout { display: none; }
+        #page-checkout.visible { display: block; }
+
+        .checkout-hero {
+            background: linear-gradient(135deg, #0a0a1a 0%, #054984 100%);
+            padding: 140px 0 40px;
+            position: relative;
+        }
+        .checkout-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: url("assets/images/hero_bg_3.jpg") center/cover;
+            opacity: 0.12;
+        }
+        .checkout-hero h1 {
+            font-family: "LusailBold", sans-serif;
+            font-size: 36px;
+            color: #eec60a;
+            position: relative;
+        }
+
+        .checkout-box {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-top: -20px;
+        }
+        .checkout-summary {
+            background: #054984;
+            padding: 32px;
+            color: #fff;
+        }
+        .checkout-summary h4 {
+            font-family: "LusailBold", sans-serif;
+            color: #eec60a;
+            margin-bottom: 20px;
+        }
+        .order-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-size: 14px;
+            color: #ccc;
+        }
+        .order-row:last-of-type { border-bottom: none; }
+        .order-row .price { color: #eec60a; font-family: "LusailBold", sans-serif; }
+        .order-total-row {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 14px;
+            margin-top: 10px;
+            border-top: 2px solid #eec60a;
+            font-family: "LusailBold", sans-serif;
+            font-size: 17px;
+            color: #fff;
+        }
+        .order-total-row .price { color: #eec60a; }
+
+        .checkout-form-wrap { padding: 36px; }
+        .form-label {
+            font-family: "LusailBold", sans-serif;
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 6px;
+            display: block;
+        }
+        .form-control-shop {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e5e5e5;
+            border-radius: 8px;
+            font-family: "LusailRegular", sans-serif;
+            font-size: 15px;
+            color: #333;
+            background: #fafafa;
+            transition: border-color 0.2s;
+            direction: rtl;
+            margin-bottom: 4px;
+        }
+        .form-control-shop:focus {
+            outline: none;
+            border-color: #054984;
+            background: #fff;
+        }
+        .form-control-shop.error { border-color: #b50406; }
+        .field-error { color: #b50406; font-size: 12px; margin-top: 3px; font-family: "LusailBold", sans-serif; }
+        .btn-purchase {
+            width: 100%;
+            background: #b50406;
+            color: #fff;
+            border: none;
+            padding: 16px;
+            border-radius: 10px;
+            font-family: "LusailBold", sans-serif;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 12px;
+        }
+        .btn-purchase:hover { background: #054984; }
+
+        /* ── THANK YOU ── */
+        #page-thankyou { display: none; }
+        #page-thankyou.visible { display: block; }
+
+        .thankyou-section {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #f8f8f8, #eef3fa);
+            padding: 80px 0;
+        }
+        .thankyou-box {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+            padding: 60px 48px;
+            text-align: center;
+            max-width: 580px;
+            margin: 0 auto;
+        }
+        .ty-icon {
+            font-size: 80px;
+            display: block;
+            margin-bottom: 16px;
+            animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes popIn {
+            from { transform: scale(0); opacity: 0; }
+            80% { transform: scale(1.15); }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .ty-emoji-row { font-size: 26px; letter-spacing: 8px; margin-bottom: 20px; }
+        .thankyou-box h2 {
+            font-family: "LusailBold", sans-serif;
+            font-size: 30px;
+            color: #054984;
+            margin-bottom: 10px;
+        }
+        .thankyou-box .ty-club {
+            font-family: "LusailBold", sans-serif;
+            font-size: 18px;
+            color: #b50406;
+            margin-bottom: 14px;
+        }
+        .thankyou-box p {
+            color: #777;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+        .btn-back-shop {
+            background: #054984;
+            color: #fff;
+            border: none;
+            padding: 14px 40px;
+            border-radius: 30px;
+            font-family: "LusailBold", sans-serif;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-back-shop:hover { background: #b50406; }
+
+        /* ── BACK BTN ── */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #054984;
+            font-family: "LusailBold", sans-serif;
+            font-size: 14px;
+            background: rgba(255,255,255,0.15);
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 24px;
+            position: relative;
+            transition: background 0.2s;
+        }
+        .back-link:hover { background: rgba(255,255,255,0.25); color: #eec60a; }
+
+        /* ── SHOP PAGE VISIBILITY ── */
+        #page-shop { display: block; }
+        #page-shop.hidden { display: none; }
+
+        @media (max-width: 768px) {
+            .shop-hero h1 { font-size: 30px; }
+            .detail-info-col { padding: 24px 20px; }
+            .detail-img-col { min-height: 200px; font-size: 70px; }
+            .checkout-form-wrap { padding: 24px 20px; }
+            .checkout-summary { padding: 24px 20px; }
+            .thankyou-box { padding: 40px 24px; }
+            .detail-btns { flex-direction: column; }
+        }
+    </style>
+</head>
+
+<body id="body" dir="rtl">
+
+    <!-- ======= Top Header ======= -->
+    <section id="tagline" class="tagline d-none d-lg-flex">
+        <div class="container-xxl">
+            <div class="d-flex justify-content-end align-items-center">
+                <div class="d-flex align-items-center gap-1">
+                    <a href="#"><i class="bx bxl-instagram"></i></a>
+                    <a href="#"><i class="bx bxl-twitter"></i></a>
+                    <a href="#"><i class="bx bxl-facebook"></i></a>
+                    <a href="#"><i class="bx bxl-youtube"></i></a>
+                    <a class="button" href="#"><i class="bi bi-globe2"></i> En</a>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </section>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="d-flex align-items-center header-transparent">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-xxl">
+                <a href="الرئيسية.html" class="logo">
+                    <img src="assets/images/logo2.jpg" alt="" class="img-fluid">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                        <a href="الرئيسية.html">
+                            <img src="assets/images/logo.png" alt="" class="img-fluid" style="max-width:150px;">
+                        </a>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <img class="background d-lg-none" src="assets/images/home4.jpg" alt="" class="img-fluid">
+                        <div class="offcanvas-icon d-lg-none d-flex justify-content-center">
+                            <a href="#"><i class="bx bxl-instagram"></i></a>
+                            <a href="#"><i class="bx bxl-twitter"></i></a>
+                            <a href="#"><i class="bx bxl-facebook"></i></a>
+                            <a href="#"><i class="bx bxl-youtube"></i></a>
+                        </div>
+                        <ul class="navbar-nav flex-grow-1 pe-3">
+                            <li>
+                                <a class="nav-link" href="الرئيسية.html"><i class="bi bi-house"></i> الرئيسية</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-newspaper"></i> الأخبار <i class="bi bi-plus"></i></a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="أخبار.html">أخبار النادي</a></li>
+                                    <li><a class="dropdown-item" href="كرة القدم.html">كرة القدم</a></li>
+                                    <li><a class="dropdown-item" href="#">كرة اليد</a></li>
+                                    <li><a class="dropdown-item" href="#">السباحة</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-dribbble"></i> كرة القدم <i class="bi bi-plus"></i></a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="الفريق الأول.html">الفريق الأول</a></li>
+                                    <li><a class="dropdown-item" href="#">الجهاز الإداري والفني</a></li>
+                                    <li><a class="dropdown-item" href="#">ترتيب الفريق</a></li>
+                                    <li><a class="dropdown-item" href="#">الإنجازات</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-trophy"></i> النادي <i class="bi bi-plus"></i></a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="نبذة تاريخية.html">نبذة تاريخية</a></li>
+                                    <li><a class="dropdown-item" href="#">مجلس الإدارة</a></li>
+                                    <li><a class="dropdown-item" href="عنوان النادي.html">عنوان النادي</a></li>
+                                    <li><a class="dropdown-item" href="#">أساطير</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-camera-video"></i> الإعلام <i class="bi bi-plus"></i></a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="أخبار.html">أخبار</a></li>
+                                    <li><a class="dropdown-item" href="معرض الصور.html">معرض الصور</a></li>
+                                    <li><a class="dropdown-item" href="فيديو.html">فيديو</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-people"></i> المشجعين <i class="bi bi-plus"></i></a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">شجع الملك</a></li>
+                                    <li><a class="dropdown-item" href="معلومات-التذاكر.html">معلومات التذاكر</a></li>
+                                    <li><a class="dropdown-item" href="وسائل التواصل الاجتماعي.html">وسائل التواصل الاجتماعي</a></li>
+                                </ul>
+                            </li>
+                            <!-- ★ SHOP NAV ITEM WITH DROPDOWN ★ -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-bag"></i> المتجر <i class="bi bi-plus"></i></a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#" onclick="jumpCat('a'); return false;">⚽ الفئة أ — الملابس الرياضية</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="jumpCat('b'); return false;">🧢 الفئة ب — الإكسسوارات</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="jumpCat('c'); return false;">🏆 الفئة ج — التذكارات</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="jumpCat('d'); return false;">🎽 الفئة د — معدات التدريب</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="jumpCat('e'); return false;">🎁 الفئة هـ — هدايا مميزة</a></li>
+                                </ul>
+                            </li>
+                            <li><a class="nav-link" href="تواصل معنا.html"><i class="bi bi-envelope"></i> تواصل معنا</a></li>
+                            <hr class="d-lg-none">
+                            <li class="d-lg-none"><a class="nav-link link2" href="mailto:#"><i class="bi bi-envelope"></i> Support@domain.com</a></li>
+                            <li class="d-lg-none"><a class="nav-link link2"><i class="bi bi-telephone"></i> +1 123 456 78 90</a></li>
+                            <li class="d-lg-none"><a class="nav-link link2"><i class="bi bi-globe2"></i> English</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ══════════════════ SHOP PAGE ══════════════════ -->
+    <div id="page-shop">
+
+        <!-- Hero -->
+        <section class="shop-hero">
+            <h1>🏪 المتجر الرسمي</h1>
+            <p>تسوّق المنتجات الرسمية لنادي لوسيل الرياضي</p>
+            <div class="hero-divider"></div>
+        </section>
+
+        <!-- Category Tabs -->
+        <div class="shop-cats" id="shopCats">
+            <div class="container">
+                <button class="cat-tab active" onclick="switchCat('a', this)"><i class="bi bi-shirt"></i> الفئة أ — الملابس</button>
+                <button class="cat-tab" onclick="switchCat('b', this)"><i class="bi bi-watch"></i> الفئة ب — الإكسسوارات</button>
+                <button class="cat-tab" onclick="switchCat('c', this)"><i class="bi bi-trophy"></i> الفئة ج — التذكارات</button>
+                <button class="cat-tab" onclick="switchCat('d', this)"><i class="bi bi-lightning"></i> الفئة د — معدات التدريب</button>
+                <button class="cat-tab" onclick="switchCat('e', this)"><i class="bi bi-gift"></i> الفئة هـ — هدايا مميزة</button>
+            </div>
+        </div>
+
+        <!-- Products -->
+        <section class="shop-section">
+            <div class="container">
+                <div class="category-block active" id="cat-a">
+                    <div class="section-header"><h2><i class="bi bi-shirt"></i> الملابس الرياضية</h2><span class="cat-badge">الفئة أ</span></div>
+                    <div class="row g-4" id="grid-a"></div>
+                </div>
+                <div class="category-block" id="cat-b">
+                    <div class="section-header"><h2><i class="bi bi-watch"></i> الإكسسوارات</h2><span class="cat-badge">الفئة ب</span></div>
+                    <div class="row g-4" id="grid-b"></div>
+                </div>
+                <div class="category-block" id="cat-c">
+                    <div class="section-header"><h2><i class="bi bi-trophy"></i> التذكارات</h2><span class="cat-badge">الفئة ج</span></div>
+                    <div class="row g-4" id="grid-c"></div>
+                </div>
+                <div class="category-block" id="cat-d">
+                    <div class="section-header"><h2><i class="bi bi-lightning"></i> معدات التدريب</h2><span class="cat-badge">الفئة د</span></div>
+                    <div class="row g-4" id="grid-d"></div>
+                </div>
+                <div class="category-block" id="cat-e">
+                    <div class="section-header"><h2><i class="bi bi-gift"></i> هدايا مميزة</h2><span class="cat-badge">الفئة هـ</span></div>
+                    <div class="row g-4" id="grid-e"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ══════════════════ PRODUCT DETAIL PAGE ══════════════════ -->
+    <div id="page-detail">
+        <div class="detail-hero">
+            <div class="container">
+                <button class="back-link" onclick="goBack('shop')"><i class="bi bi-arrow-right"></i> العودة إلى المتجر</button>
+            </div>
+        </div>
+        <div class="container pb-5">
+            <div class="detail-card">
+                <div class="row g-0">
+                    <div class="col-md-5">
+                        <div class="detail-img-col" id="detailImg"></div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="detail-info-col">
+                            <span class="detail-tag" id="detailTag"></span>
+                            <div class="detail-name" id="detailName"></div>
+                            <div class="detail-desc" id="detailDesc"></div>
+                            <div class="detail-price"><span id="detailPrice"></span> <small>ريال قطري</small></div>
+                            <div class="detail-btns">
+                                <button class="btn-buy-now" onclick="proceedToCheckout()">🎉 اشتر الآن</button>
+                                <button class="btn-add-detail" onclick="proceedToCheckout()">🛒 أضف للسلة</button>
+                            </div>
+                            <div class="detail-meta">
+                                <div class="meta-item"><span class="meta-label">التوصيل</span><span class="meta-val">3-5 أيام</span></div>
+                                <div class="meta-item"><span class="meta-label">الإرجاع</span><span class="meta-val">14 يوم مجاناً</span></div>
+                                <div class="meta-item"><span class="meta-label">الضمان</span><span class="meta-val">منتج أصلي</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════════════ CHECKOUT PAGE ══════════════════ -->
+    <div id="page-checkout">
+        <div class="checkout-hero">
+            <div class="container">
+                <button class="back-link" onclick="goBack('detail')"><i class="bi bi-arrow-right"></i> العودة</button>
+                <h1>🛒 إتمام الطلب</h1>
+            </div>
+        </div>
+        <div class="container pb-5">
+            <div class="checkout-box">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <div class="checkout-summary">
+                            <h4><i class="bi bi-bag-check"></i> ملخص الطلب</h4>
+                            <div id="orderRows"></div>
+                            <div class="order-total-row">
+                                <span>الإجمالي</span>
+                                <span class="price" id="orderTotal">0 ر.ق</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="checkout-form-wrap">
+                            <div class="mb-4">
+                                <label class="form-label">الاسم الكامل</label>
+                                <input type="text" id="fname" class="form-control-shop" placeholder="أدخل اسمك الكامل">
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label">البريد الإلكتروني</label>
+                                <input type="email" id="femail" class="form-control-shop" placeholder="example@email.com">
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label">رقم الهاتف</label>
+                                <input type="tel" id="fphone" class="form-control-shop" placeholder="+974 XXXX XXXX">
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label">عنوان التوصيل</label>
+                                <input type="text" id="faddress" class="form-control-shop" placeholder="المدينة، الشارع، رقم المبنى">
+                            </div>
+                            <button class="btn-purchase" onclick="completePurchase()">🎉 اشتر الآن — أكمل الطلب</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════════════ THANK YOU PAGE ══════════════════ -->
+    <div id="page-thankyou">
+        <section class="thankyou-section">
+            <div class="container">
+                <div class="thankyou-box">
+                    <span class="ty-icon">🎉</span>
+                    <div class="ty-emoji-row">🏆 ⚽ 🌟 🏅 🎊</div>
+                    <h2>شكراً لطلبك!</h2>
+                    <p class="ty-club">نادي لوسيل الرياضي يشكرك على ثقتك</p>
+                    <p>تم استلام طلبك بنجاح.<br>سيتواصل معك فريق نادي لوسيل الرياضي قريباً لتأكيد التوصيل.<br><br><strong>واو! أنت الآن جزء من عائلة لوسيل 💛</strong></p>
+                    <button class="btn-back-shop" onclick="backToShop()"><i class="bi bi-bag"></i> العودة للمتجر</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ======= Footer ======= -->
+    <footer class="Footer border-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 mb-5 mb-lg-0">
+                    <div class="row mb-5">
+                        <div class="col-md-12"><h3 class="footer-heading mb-4">نادي لوسيل</h3></div>
+                        <div class="col-md-6 col-lg-6"><img src="assets/images/logo2.jpg"></div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6 mb-5 mb-lg-0">
+                    <div class="row mb-5">
+                        <div class="col-md-12"><h3 class="footer-heading mb-4"><i class="bi bi-newspaper"></i> الأخبار</h3></div>
+                        <div class="col-12"><ul class="list-unstyled">
+                            <li><a href="أخبار.html">أخبار النادي</a></li>
+                            <li><a href="كرة القدم.html">كرة القدم</a></li>
+                            <li><a href="#">كرة اليد</a></li>
+                            <li><a href="#">السباحة</a></li>
+                        </ul></div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6 mb-5 mb-lg-0">
+                    <div class="row mb-5">
+                        <div class="col-md-12"><h3 class="footer-heading mb-4"><i class="bi bi-dribbble"></i> كرة القدم</h3></div>
+                        <div class="col-12"><ul class="list-unstyled">
+                            <li><a href="الفريق الأول.html">الفريق الأول</a></li>
+                            <li><a href="#">الجهاز الإداري والفني</a></li>
+                            <li><a href="#">ترتيب الفرق</a></li>
+                            <li><a href="#">الإنجازات</a></li>
+                        </ul></div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6 mb-5 mb-lg-0">
+                    <div class="row mb-5">
+                        <div class="col-md-12"><h3 class="footer-heading mb-4"><i class="bi bi-trophy"></i> النادي</h3></div>
+                        <div class="col-12"><ul class="list-unstyled">
+                            <li><a href="نبذة تاريخية.html">نبذة تاريخية</a></li>
+                            <li><a href="#">مجلس الإدارة</a></li>
+                            <li><a href="عنوان النادي.html">عنوان النادي</a></li>
+                            <li><a href="#">أساطير</a></li>
+                        </ul></div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6 mb-5 mb-lg-0">
+                    <div class="row mb-5">
+                        <div class="col-md-12"><h3 class="footer-heading mb-4"><i class="bi bi-camera-video"></i> الإعلام</h3></div>
+                        <div class="col-12"><ul class="list-unstyled">
+                            <li><a href="أخبار.html">أخبار</a></li>
+                            <li><a href="معرض الصور.html">معرض الصور</a></li>
+                            <li><a href="فيديو.html">فيديو</a></li>
+                        </ul></div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6 mb-5 mb-lg-0">
+                    <div class="row mb-5">
+                        <div class="col-md-12"><h3 class="footer-heading mb-4"><i class="bi bi-bag"></i> المتجر</h3></div>
+                        <div class="col-12"><ul class="list-unstyled">
+                            <li><a href="#" onclick="jumpCat('a'); return false;">الملابس الرياضية</a></li>
+                            <li><a href="#" onclick="jumpCat('b'); return false;">الإكسسوارات</a></li>
+                            <li><a href="#" onclick="jumpCat('c'); return false;">التذكارات</a></li>
+                            <li><a href="#" onclick="jumpCat('d'); return false;">معدات التدريب</a></li>
+                            <li><a href="#" onclick="jumpCat('e'); return false;">هدايا مميزة</a></li>
+                        </ul></div>
+                    </div>
+                </div>
+                <div class="col-lg-12 mb-5 mb-lg-0">
+                    <div class="social">
+                        <a href="#"><i class="bx bxl-instagram"></i></a>
+                        <a href="#"><i class="bx bxl-twitter"></i></a>
+                        <a href="#"><i class="bx bxl-facebook"></i></a>
+                        <a href="#"><i class="bx bxl-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row pt-2 mt-2 text-center">
+                <div class="col-md-12">
+                    <p>Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | <a href="https://colorlib.com" target="_blank">نادي لوسيل الرياضي</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-chevron-up"></i></a>
+
+    <!-- Vendor JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <script>
+    // ─── DATA ───
+    const products = {
+      a: [
+        { id:'a1', name:'قميص النادي الرسمي',   price:180, desc:'القميص الرسمي لنادي لوسيل موسم 2024 بخامة عالية الجودة مع شعار النادي المطرز.', emoji:'👕' },
+        { id:'a2', name:'شورت التدريب',           price:95,  desc:'شورت رياضي خفيف ومريح مثالي للتدريبات اليومية والمباريات.', emoji:'🩳' },
+        { id:'a3', name:'بدلة الحراسة',           price:320, desc:'بدلة حراسة مرمى احترافية متعددة الألوان بتصميم عصري فريد.', emoji:'🧤' },
+        { id:'a4', name:'طقم الأطفال',            price:150, desc:'طقم رسمي للأطفال يشمل القميص والشورت بمقاسات متعددة.', emoji:'👦' },
+      ],
+      b: [
+        { id:'b1', name:'قبعة لوسيل الرسمية',    price:75,  desc:'قبعة بيسبول بشعار النادي الذهبي تناسب جميع المناسبات الرياضية.', emoji:'🧢' },
+        { id:'b2', name:'وشاح النادي',            price:55,  desc:'وشاح فليس دافئ بألوان النادي الرسمية لدعم فريقك في كل مباراة.', emoji:'🧣' },
+        { id:'b3', name:'حقيبة ظهر رياضية',      price:195, desc:'حقيبة ظهر بسعة 30 لتر مع حجرات منظمة وشعار النادي المطرز.', emoji:'🎒' },
+        { id:'b4', name:'ساعة يد لوسيل',         price:450, desc:'ساعة رياضية بتصميم حصري تحمل شعار النادي بإطار فضي أنيق.', emoji:'⌚' },
+      ],
+      c: [
+        { id:'c1', name:'درع تذكاري',             price:280, desc:'درع ذهبي مصنوع يدوياً يحمل شعار النادي وتاريخ التأسيس — هدية مثالية.', emoji:'🛡️' },
+        { id:'c2', name:'كرة موقّعة',             price:220, desc:'كرة قدم رسمية موقّعة من لاعبي الفريق الأول محفوظة في علبة عرض شفافة.', emoji:'⚽' },
+        { id:'c3', name:'إطار صورة النادي',       price:120, desc:'إطار خشبي فاخر بشعار النادي لعرض ذكرياتك مع نادي لوسيل.', emoji:'🖼️' },
+        { id:'c4', name:'دمية شخصية اللاعب',     price:160, desc:'دمية بتصميم لاعب نادي لوسيل بالزي الرسمي — هدية مميزة للمشجعين.', emoji:'🪆' },
+      ],
+      d: [
+        { id:'d1', name:'كرة تدريب احترافية',    price:130, desc:'كرة قدم احترافية مثالية لجلسات التدريب الفردي والجماعي.', emoji:'⚽' },
+        { id:'d2', name:'مخاريط تدريب',           price:65,  desc:'طقم مخاريط تدريب مكوّن من 12 قطعة بألوان مختلفة لتنظيم التمارين.', emoji:'🔺' },
+        { id:'d3', name:'حذاء ملعب رياضي',       price:380, desc:'حذاء ملعب عالي الأداء بنعل مقوّى مناسب لجميع أنواع الملاعب.', emoji:'👟' },
+        { id:'d4', name:'قفازات حراسة',           price:175, desc:'قفازات حراسة احترافية بطبقة مطاطية غير زلقة لأقصى قدر من الإمساك.', emoji:'🧤' },
+      ],
+      e: [
+        { id:'e1', name:'صندوق هدايا VIP',       price:550, desc:'صندوق هدايا فاخر يحتوي على قميص + قبعة + وشاح + ملاحظة شخصية مع غلاف أنيق.', emoji:'🎁' },
+        { id:'e2', name:'مفتاح لوسيل الذهبي',   price:85,  desc:'سلسلة مفاتيح فضية منقوش عليها شعار النادي — هدية صغيرة ذات قيمة كبيرة.', emoji:'🔑' },
+        { id:'e3', name:'كوب حرارة النادي',      price:90,  desc:'كوب ستانلس ستيل بطبعة شعار النادي يحافظ على درجة حرارة مشروبك لساعات.', emoji:'☕' },
+        { id:'e4', name:'لوحة خشبية فنية',       price:210, desc:'لوحة خشبية حرفية تجمع بين شعار النادي وألوانه في تصميم فني حصري.', emoji:'🎨' },
+      ],
+    };
+
+    const catNames = {
+      a: 'الفئة أ — الملابس الرياضية',
+      b: 'الفئة ب — الإكسسوارات',
+      c: 'الفئة ج — التذكارات',
+      d: 'الفئة د — معدات التدريب',
+      e: 'الفئة هـ — هدايا مميزة',
+    };
+
+    let cart = [];
+    let currentProduct = null;
+    let currentCat = null;
+    let lastPage = 'shop';
+
+    // ─── RENDER ───
+    function renderAll() {
+      Object.keys(products).forEach(cat => {
+        const grid = document.getElementById('grid-' + cat);
+        grid.innerHTML = products[cat].map(p => `
+          <div class="col-sm-6 col-lg-3">
+            <div class="product-card">
+              <div class="product-thumb" onclick="openDetail('${p.id}','${cat}')">
+                ${p.emoji}
+                <span class="view-hint">عرض التفاصيل</span>
+              </div>
+              <div class="product-body">
+                <div class="product-name">${p.name}</div>
+                <div class="product-desc">${p.desc}</div>
+                <div class="product-foot">
+                  <div class="product-price">${p.price} <small>ر.ق</small></div>
+                  <button class="btn-add" onclick="addAndCheckout('${p.id}','${cat}')">أضف للسلة</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      });
+    }
+
+    // ─── CATEGORY SWITCH ───
+    function switchCat(cat, btn) {
+      document.querySelectorAll('.category-block').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.cat-tab').forEach(b => b.classList.remove('active'));
+      document.getElementById('cat-' + cat).classList.add('active');
+      if (btn) btn.classList.add('active');
+    }
+
+    function jumpCat(cat) {
+      showPage('shop');
+      const tabs = document.querySelectorAll('.cat-tab');
+      tabs.forEach(t => { if (t.getAttribute('onclick').includes("'" + cat + "'")) switchCat(cat, t); });
+      setTimeout(() => document.getElementById('shopCats').scrollIntoView({ behavior:'smooth' }), 100);
+    }
+
+    // ─── PRODUCT DETAIL ───
+    function openDetail(id, cat) {
+      const p = products[cat].find(x => x.id === id);
+      currentProduct = p;
+      currentCat = cat;
+      lastPage = 'shop';
+
+      document.getElementById('detailImg').textContent = p.emoji;
+      document.getElementById('detailTag').textContent = catNames[cat];
+      document.getElementById('detailName').textContent = p.name;
+      document.getElementById('detailDesc').textContent = p.desc;
+      document.getElementById('detailPrice').textContent = p.price;
+
+      showPage('detail');
+    }
+
+    function proceedToCheckout() {
+      if (!currentProduct) return;
+      cart = [{ ...currentProduct, qty: 1 }];
+      buildOrderSummary();
+      showPage('checkout');
+    }
+
+    function addAndCheckout(id, cat) {
+      const p = products[cat].find(x => x.id === id);
+      currentProduct = p;
+      currentCat = cat;
+      cart = [{ ...p, qty: 1 }];
+      buildOrderSummary();
+      showPage('checkout');
+    }
+
+    function buildOrderSummary() {
+      document.getElementById('orderRows').innerHTML = cart.map(i =>
+        `<div class="order-row"><span>${i.emoji} ${i.name}</span><span class="price">${i.price} ر.ق</span></div>`
+      ).join('');
+      document.getElementById('orderTotal').textContent = cart.reduce((s,i) => s + i.price * i.qty, 0) + ' ر.ق';
+    }
+
+    // ─── CHECKOUT ───
+    function completePurchase() {
+      document.querySelectorAll('.field-error').forEach(e => e.remove());
+      document.querySelectorAll('.form-control-shop').forEach(i => i.classList.remove('error'));
+
+      const fields = [
+        { id:'fname',    msg:'يرجى إدخال الاسم الكامل' },
+        { id:'femail',   msg:'يرجى إدخال البريد الإلكتروني' },
+        { id:'fphone',   msg:'يرجى إدخال رقم الهاتف' },
+        { id:'faddress', msg:'يرجى إدخال عنوان التوصيل' },
+      ];
+      let valid = true;
+      fields.forEach(f => {
+        const el = document.getElementById(f.id);
+        if (!el.value.trim()) {
+          valid = false;
+          el.classList.add('error');
+          const err = document.createElement('div');
+          err.className = 'field-error';
+          err.textContent = f.msg;
+          el.after(err);
+        }
+      });
+      if (!valid) return;
+
+      cart = [];
+      ['fname','femail','fphone','faddress'].forEach(id => document.getElementById(id).value = '');
+      showPage('thankyou');
+    }
+
+    function backToShop() { showPage('shop'); }
+
+    // ─── NAVIGATION ───
+    function goBack(to) { showPage(to); }
+
+    function showPage(name) {
+      ['page-shop','page-detail','page-checkout','page-thankyou'].forEach(id => {
+        const el = document.getElementById(id);
+        el.style.display = 'none';
+      });
+      document.getElementById('page-' + name).style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ─── INIT ───
+    renderAll();
+    </script>
+</body>
+</html>
